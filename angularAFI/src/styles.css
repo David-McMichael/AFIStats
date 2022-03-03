@@ -1,0 +1,47 @@
+/* You can add global styles to this file, and also import other style files */
+body {background-color: black !important;
+overflow: hidden !important;}
+
+.mat-slide-toggle-label {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  height: inherit;
+  cursor: pointer;
+  padding-bottom: 13px !important;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    
+  }
+  
+  .ngx-pagination {
+    padding-left: 0;
+    background: #022413;
+    border-radius: 10px;
+  }
+
+  .ngx-pagination .current{
+      background: #7ab8fa !important;
+  }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+  margin-bottom: 20px !important;
+}

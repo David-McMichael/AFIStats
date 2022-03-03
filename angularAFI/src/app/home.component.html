@@ -1,0 +1,196 @@
+<div class="container-fluid d-flex flex-column flex-grow-1 vh-100 overflow-hidden"
+  style="margin-top: 40px; flex: auto;">
+  <div class="row flex-shrink-0" style="background-color: black !important; text-align: center; color: white; border-bottom: white;
+  border-bottom-style: solid;">
+    <div class="col-4">
+      <h4>Team1<br>00</h4>
+    </div>
+    <div class="col-4">
+      <h1>13:15</h1>
+    </div>
+    <div class="col-4">
+      <h4>Team2<br>00</h4>
+    </div>
+    <div class="col-3">
+      <h4>DOWN<br>1</h4>
+    </div>
+    <div class="col-3">
+      <h4>TO GO<br>10</h4>
+    </div>
+    <div class="col-3">
+      <h4>BALL ON<br>25</h4>
+    </div>
+    <div class="col-3">
+      <h4>QTR<br>1</h4>
+    </div>
+  </div>
+  <div class="row flex-grow-1 overflow-hidden">
+
+    <ng-template #content let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Pass Play</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #addPass="ngForm" (ngSubmit)="onSubmit(addPass.value)">
+
+          <div class="form-group">
+            <label for="Passer">Passer</label>
+            <div class="input-group">
+              <select name="Passer" class="form-control" ngModel>
+                <option value="10-Example">10-Example</option>
+                <option value="7-David">7-David</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="Receiver">Intended Reciever</label>
+            <div class="input-group">
+              <select name="Receiver" class="form-control" ngModel>
+                <option value="88-Receiver">88-Receiver</option>
+                <option value="13-Pringle">13-Pringle</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="Complete">Pass Status</label>
+            <div class="input-group">
+              <mat-button-toggle-group name="passStatus" aria-label="Font Style" ngModel>
+                <mat-button-toggle name="IsComplete" value="IsComplete">Comp</mat-button-toggle>
+                <mat-button-toggle name="IsIncomplete" value="IsIncomplete">Incomp</mat-button-toggle>
+                <mat-button-toggle name="IsIntercepted" value="IsIntercepted">Int</mat-button-toggle>
+                <mat-button-toggle name="IsSack" value="IsSack">Sack</mat-button-toggle>
+              </mat-button-toggle-group>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="Yards">Yards Gained</label>
+            <div class="input-group">
+              <input type="number" name="Yards" class="form-control" ngModel>
+            </div>
+          </div>
+          <div class="text-center">
+            <button data-dismiss="modal" class="btn btn-outline-dark" style="margin-top: 10px;">Submit</button>
+          </div>
+        </form>
+      </div>
+    </ng-template>
+    <ng-template #contentEdit let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Pass Play</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #editPass="ngForm" (ngSubmit)="onEdit(editPass.value)">
+
+          <div class="form-group">
+            <label for="Passer">Passer</label>
+            <div class="input-group">
+              <select name="Passer" class="form-control" ngModel>
+                <option value="10-Example">10-Example</option>
+                <option value="7-David">7-David</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="Receiver">Intended Reciever</label>
+            <div class="input-group">
+              <select name="Receiver" class="form-control" ngModel>
+                <option value="88-Receiver">88-Receiver</option>
+                <option value="13-Pringle">13-Pringle</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="Complete">Pass Status</label>
+            <div class="input-group">
+              <mat-button-toggle-group name="passStatus" aria-label="Font Style" ngModel>
+                <mat-button-toggle name="IsComplete" value="IsComplete">Comp</mat-button-toggle>
+                <mat-button-toggle name="IsIncomplete" value="IsIncomplete">Incomp</mat-button-toggle>
+                <mat-button-toggle name="IsIntercepted" value="IsIntercepted">Int</mat-button-toggle>
+                <mat-button-toggle name="IsSack" value="IsSack">Sack</mat-button-toggle>
+              </mat-button-toggle-group>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="Yards">Yards Gained</label>
+            <div class="input-group">
+              <input type="number" name="Yards" class="form-control" value='0' ngModel>
+            </div>
+          </div>
+          <div class="text-center">
+            <button data-dismiss="modal" class="btn btn-outline-dark" style="margin-top: 10px;">Submit</button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="passDelete()">Delete</button>
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Cancel click')">Cancel</button>
+      </div>
+    </ng-template>
+
+
+    <div id=removeScrollBar class="col mh-100 overflow-auto py-2" style="overflow-y: scroll !important;">
+      <div *ngFor="let stat of webService.stat_list | paginate: { id: 'main', itemsPerPage: 25, currentPage: p}">
+        <div class="card text-white mb-3.5" [ngStyle]="{'background-color':this.getColor(stat.OffenseTeam)}"
+          style="width: 20rem; margin: auto; outline-style: solid; text-align: center;">
+          <div class="card-body" style="cursor: pointer;" (click)="openEdit(contentEdit, stat)">
+            <div class="row">
+              <div class="col-3">
+                {{stat.Down}}&{{stat.ToGo}}<br>Test{{stat.id}}
+              </div>
+              <div class="col-9">
+                {{stat.Description}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row flex-shrink-0"
+    style="background-color: black !important; border-top: white; padding-bottom: 25px; border-top-style: solid;">
+    <div class="cont" style="border-top: 3px; border-color: white;">
+      <div class="pagination" style="margin-top: 10px !important;">
+        <pagination-controls id='main' style="color: white;" (pageChange)="p = $event" previousLabel="" nextLabel="">
+        </pagination-controls>
+      </div>
+      <div class="row">
+        <div class="col" style="display: flex; justify-content: center;">
+          <button mat-raised-button>
+            Run
+          </button>
+        </div>
+        <div class="col" style="display: flex; justify-content: center;">
+          <button mat-raised-button (click)="open(content)">
+            Pass
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col" style="display: flex; justify-content: center;">
+          <button mat-raised-button>
+            Special Teams
+          </button>
+        </div>
+        <div class="col" style="display: flex; justify-content: center;">
+          <button mat-raised-button>
+            Penalties
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

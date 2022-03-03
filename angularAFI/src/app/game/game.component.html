@@ -1,0 +1,242 @@
+<div class="container-fluid d-flex flex-column flex-grow-1 vh-100 overflow-hidden" style="margin-top: 40px; flex: auto;">
+  
+  <div class="row flex-shrink-0" style="background-color: black !important; text-align: center; color: white; border-bottom: white;
+  border-bottom-style: solid;">
+    <div class="col-3" style="padding-top: 5px; padding-bottom: 5px;">
+        <span style="font-size: x-large;"> Team1<span style="color:black">&#171;</span></span>
+    </div>
+    <div class="col-6" style="position: relative; margin-top: 5px; margin-bottom: 5px;">
+        <img src="../assets/images/Pitch.jpg" style="max-width: 100%;
+        max-height: 100%; position: relative;" alt="">
+        <img src="../assets/images/Football.png" style="max-width: 100%;
+            max-height: 100%; position: absolute; top: 0%; left: 56%;" alt="">
+    </div>
+    <div class="col-3" style="padding-top: 5px; padding-bottom: 5px;">
+    <span style="font-size: x-large; "><span style="color:red">&#187;</span>Team2</span>
+    </div>
+    <div class="col-3" style="margin: auto; font-size: xx-large;">
+     00
+     </div>
+    <div class="col-6">
+        <div class="row">
+            <div class="col-3" style="padding: 0px;">
+                Down
+              </div>
+              <div class="col-3" style="padding: 0px;">
+                To Go
+              </div>
+              <div class="col-3" style="padding: 0px;">
+                Ball On
+              </div>
+              <div class="col-3" style="padding: 0px;">
+                QTR
+              </div>
+        </div>
+        <div class="row" style="padding-top: 5px; padding-bottom: 5px; font-weight: bold; font-size: x-large;">
+            <div class="col-3" style="padding: 0px;">
+                1
+              </div>
+              <div class="col-3" style="padding: 0px;">
+                10
+              </div>
+              <div class="col-3" style="padding: 0px;">
+                38&#187;
+              </div>
+              <div class="col-3" style="padding: 0px;">
+                2
+              </div>
+        </div>
+    </div>
+    <div class="col-3" style="margin: auto; font-size: xx-large;">
+      00
+    </div>
+  </div>
+
+
+    <!-- <ng-template #content let-modal style="position: absolute; transform: translate(-50%, -50%);">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Pass Play</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+    </ng-template>
+    <ng-template #contentEdit let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Pass Play</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="passDelete()">Delete</button>
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Cancel click')">Cancel</button>
+      </div>
+    </ng-template> -->
+
+    <div [hidden]="isDisplayBase" class="row flex-grow-1 overflow-hidden">
+    <div id=removeScrollBar class="col mh-100 overflow-auto py-2" style="overflow-y: scroll !important;">
+      <div *ngFor="let stat of webService.stat_list">
+        <div class="card text-white mb-3.5" [ngStyle]="{'background-color':this.getColor(stat.OffenseTeam)}"
+          style="width: 20rem; margin: auto; outline-style: solid; text-align: center;">
+          <div class="card-body" style="cursor: pointer;" (click)="toggleDisplayEdit('editPass', stat)">
+            <div class="row">
+              <div class="col-3">
+                {{stat.Down}}&{{stat.ToGo}}<br>Test{{stat.id}}
+              </div>
+              <div class="col-9">
+                {{stat.Description}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div [hidden]=isDisplayBase class="row flex-shrink-0"
+    style="background-color: black !important; border-top: white; padding-bottom: 25px; border-top-style: solid;">
+    <div class="cont" style="border-top: 3px; border-color: white;">
+      <div class="row">
+        <div class="col" style="display: flex; justify-content: center;">
+          <button (click) ="toggleDisplay('run')" mat-raised-button>
+            Run
+          </button>
+        </div>
+        <div class="col" style="display: flex; justify-content: center;">
+          <button mat-raised-button (click) = "toggleDisplay('pass')">
+            Pass
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col" style="display: flex; justify-content: center;">
+          <button mat-raised-button>
+            Special Teams
+          </button>
+        </div>
+        </div>
+        <div class="row">
+        <div class="col" style="display: flex; justify-content: center;">
+          <button mat-raised-button>
+            Penalties
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div [hidden]="isDisplayPass" class="row flex-grow-1 overflow-hidden">
+    <div id=removeScrollBar class="col mh-100 overflow-auto py-2" style="overflow-y: scroll !important;">
+        <form #addPass="ngForm" (ngSubmit)="onSubmit(addPass.value)">
+
+            <div class="form-group">
+              <label for="Passer">Passer</label>
+              <div class="input-group">
+                <select name="Passer" class="form-control" ngModel>
+                  <option value="10-Example">10-Example</option>
+                  <option value="7-David">7-David</option>
+                </select>
+              </div>
+            </div>
+  
+            <div class="form-group">
+              <label for="Receiver">Intended Reciever</label>
+              <div class="input-group">
+                <select name="Receiver" class="form-control" ngModel>
+                  <option value="88-Receiver">88-Receiver</option>
+                  <option value="13-Pringle">13-Pringle</option>
+                </select>
+              </div>
+            </div>
+  
+            <div class="form-group">
+              <label for="Complete">Pass Status</label>
+              <div class="input-group">
+                <mat-button-toggle-group name="passStatus" aria-label="Font Style" ngModel>
+                  <mat-button-toggle name="IsComplete" value="IsComplete">Comp</mat-button-toggle>
+                  <mat-button-toggle name="IsIncomplete" value="IsIncomplete">Incomp</mat-button-toggle>
+                  <mat-button-toggle name="IsIntercepted" value="IsIntercepted">Int</mat-button-toggle>
+                  <mat-button-toggle name="IsSack" value="IsSack">Sack</mat-button-toggle>
+                </mat-button-toggle-group>
+              </div>
+            </div>
+  
+            <div class="form-group">
+              <label for="Yards">Yards Gained</label>
+              <div class="input-group">
+                <input type="number" name="Yards" class="form-control" ngModel>
+              </div>
+            </div>
+            <div class="text-center">
+              <button (click) = "toggleDisplay('pass')" class="btn btn-outline-dark" style="margin-top: 10px;">Submit</button>
+            </div>
+          </form>
+          <button (click) = "toggleDisplay('pass')">back </button>
+    </div>
+
+  </div>
+
+  <div [hidden]="isDisplayEditPass" class="row flex-grow-1 overflow-hidden">
+    <div id=removeScrollBar class="col mh-100 overflow-auto py-2" style="overflow-y: scroll !important;">
+        <form #editPass="ngForm" (ngSubmit)="onEdit(editPass.value)">
+
+            <div class="form-group">
+              <label for="Passer">Passer</label>
+              <div class="input-group">
+                <select name="Passer" class="form-control" [(ngModel)]="currentPasser">
+                  <option value={{currentPasser}} selected hidden>{{currentPasser}}</option>
+                  <option value="10-Example">10-Example</option>
+                  <option value="7-David">7-David</option>
+                </select>
+              </div>
+            </div>
+  
+            <div class="form-group">
+              <label for="Receiver">Intended Reciever</label>
+              <div class="input-group">
+                <select name="Receiver" class="form-control" [(ngModel)]="currentReceiver">
+                    <option value={{currentReceiver}} selected hidden>{{currentReceiver}}</option>
+                  <option value="88-Receiver">88-Receiver</option>
+                  <option value="13-Pringle">13-Pringle</option>
+                </select>
+              </div>
+            </div>
+  
+            <div class="form-group">
+              <label for="Complete">Pass Status</label>
+              <div class="input-group">
+                <mat-button-toggle-group name="passStatus" aria-label="Font Style" [(ngModel)]="currentPassStatus" value="currentPassStatus">
+                  <mat-button-toggle name="IsComplete" value="IsComplete">Comp</mat-button-toggle>
+                  <mat-button-toggle name="IsIncomplete" value="IsIncomplete">Incomp</mat-button-toggle>
+                  <mat-button-toggle name="IsIntercepted" value="IsIntercepted">Int</mat-button-toggle>
+                  <mat-button-toggle name="IsSack" value="IsSack">Sack</mat-button-toggle>
+                </mat-button-toggle-group>
+              </div>
+            </div>
+  
+            <div class="form-group">
+              <label for="Yards">Yards Gained</label>
+              <div class="input-group">
+                <input type="number" name="Yards" class="form-control" value=currentYardsGained [(ngModel)]="currentYardsGained">
+              </div>
+            </div>
+            <div class="text-center">
+              <button (click) = "toggleDisplay('editPass')" class="btn btn-outline-dark" style="margin-top: 10px;">Submit</button>
+            </div>
+          </form>
+          <button type="button" class="btn btn-outline-dark" (click)="passDelete()">Delete</button>
+          <button (click) = "toggleDisplay('editPass')">back </button>
+    </div>
+
+  </div>
+
+  
+</div>

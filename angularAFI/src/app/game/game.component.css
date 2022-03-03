@@ -1,0 +1,46 @@
+.cont {
+    padding: 10px;
+    width: 350px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.mat-raised-button {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    
+}
+
+.body {
+    background-color: black;
+}
+
+.mat-h2, .mat-title, .mat-typography h2 {
+    margin: 0 0 0px !important;
+    padding-right: 10px !important;
+}
+
+.statHeader {
+    color: white;
+    font-weight: bold;
+    /* font-size: smaller; */
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 100%;
+    justify-content: center;
+}
+
+.modal {
+    top:20% !important;
+ }  
+
+

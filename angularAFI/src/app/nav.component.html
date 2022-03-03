@@ -1,0 +1,42 @@
+<div class="navbar navbar-expand-sm bg-primary navbar-dark fixed-top" style="background-color: #022413 !important">
+  <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+    <span class="navbar-brand">
+      <img src="assets/images/AFILogo.png" alt="" style="
+          height: 40px;
+          width: auto;
+          padding-left: 10px;
+          padding-right: 5px;
+        " />
+      AFI Stats
+    </span>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a routerLink="/" class="nav-link">Home</a>
+      </li>
+    </ul>
+  </div>
+  <div class="mx-auto order-0">
+    <a class="navbar-brand mx-auto" *ngIf="authService.user$ | async as user">Welcome, {{ user.name }}
+    </a>
+  </div>
+  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+    <ul class="navbar-nav ms-auto" style="padding-right: 10px">
+      <ng-container *ngIf="authService.isAuthenticated$ | async; else loggedOut">
+        <img *ngIf="authService.user$ | async as user" [src]="user.picture" alt="User's profile picture"
+          class="rounded-circle img-fluid profile-picture" style="height: 40px; width: auto; margin-right: 10px" />
+        <button class="btn btn-outline-light" (click)="authService.logout()">
+          Logout
+        </button>
+      </ng-container>
+      <ng-template #loggedOut>
+        <button class="btn btn-outline-light" (click)="
+            authService.loginWithRedirect({
+              appState: { target: this.router.url }
+            })
+          ">
+          Login
+        </button>
+      </ng-template>
+    </ul>
+  </div>
+</div>
