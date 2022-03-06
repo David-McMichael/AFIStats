@@ -1,90 +1,73 @@
-<div class="container-fluid d-flex flex-column flex-grow-1 vh-100 overflow-hidden" style="margin-top: 40px; flex: auto;">
-  
+<div class="container-fluid d-flex flex-column flex-grow-1 vh-100 overflow-hidden"
+  style="margin-top: 40px; flex: auto;">
+
   <div class="row flex-shrink-0" style="background-color: black !important; text-align: center; color: white; border-bottom: white;
   border-bottom-style: solid;">
-    <div class="col-3" style="padding-top: 5px; padding-bottom: 5px;">
-        <span style="font-size: x-large;"> Team1<span style="color:black">&#171;</span></span>
+    <div class="col-3" style="padding-top: 5px; padding-bottom: 5px; padding-right: 0px; padding-left: 0px;">
+      <span style="font-size: x-large;"> Team1<span style="color:red">&#171;</span></span>
     </div>
     <div class="col-6" style="position: relative; margin-top: 5px; margin-bottom: 5px;">
-        <img src="../assets/images/Pitch.jpg" style="max-width: 100%;
+      <img src="../assets/images/Pitch.jpg" style="max-width: 100%;
         max-height: 100%; position: relative;" alt="">
-        <img src="../assets/images/Football.png" style="max-width: 100%;
+      <img src="../assets/images/Football.png" style="max-width: 100%;
             max-height: 100%; position: absolute; top: 0%; left: 56%;" alt="">
     </div>
-    <div class="col-3" style="padding-top: 5px; padding-bottom: 5px;">
-    <span style="font-size: x-large; "><span style="color:red">&#187;</span>Team2</span>
-    </div>
-    <div class="col-3" style="margin: auto; font-size: xx-large;">
-     00
-     </div>
-    <div class="col-6">
-        <div class="row">
-            <div class="col-3" style="padding: 0px;">
-                Down
-              </div>
-              <div class="col-3" style="padding: 0px;">
-                To Go
-              </div>
-              <div class="col-3" style="padding: 0px;">
-                Ball On
-              </div>
-              <div class="col-3" style="padding: 0px;">
-                QTR
-              </div>
-        </div>
-        <div class="row" style="padding-top: 5px; padding-bottom: 5px; font-weight: bold; font-size: x-large;">
-            <div class="col-3" style="padding: 0px;">
-                1
-              </div>
-              <div class="col-3" style="padding: 0px;">
-                10
-              </div>
-              <div class="col-3" style="padding: 0px;">
-                38&#187;
-              </div>
-              <div class="col-3" style="padding: 0px;">
-                2
-              </div>
-        </div>
+    <div class="col-3" style="padding-top: 5px; padding-bottom: 5px; padding-right: 0px; padding-left: 0px;">
+      <span style="font-size: x-large; "><span style="color:black">&#187;</span>Team2</span>
     </div>
     <div class="col-3" style="margin: auto; font-size: xx-large;">
       00
     </div>
+    <div class="col-6">
+      <div class="row">
+        <div class="col-3" style="padding: 0px;">
+          Down
+        </div>
+        <div class="col-3" style="padding: 0px;">
+          To Go
+        </div>
+        <div class="col-3" style="padding: 0px;">
+          Ball On
+        </div>
+        <div class="col-3" style="padding: 0px;">
+          QTR
+        </div>
+      </div>
+      <div class="row" style="padding-top: 5px; padding-bottom: 5px; font-weight: bold; font-size: x-large;">
+        <div class="col-3" style="padding: 0px;">
+          1
+        </div>
+        <div class="col-3" style="padding: 0px;">
+          {{stat.toGoYards}}
+        </div>
+        <div class="col-3" style="padding: 0px;">
+          {{stat.startYards}}&#187;
+        </div>
+        <div class="col-3" style="padding: 0px;">
+          {{stat.quarter}}
+        </div>
+      </div>
+    </div>
+    <div class="col-3" style="margin: auto; font-size: xx-large;">
+      00
+    </div>
+    <div [hidden]="isDisplayToolbar" class="col-6">
+      <button mat-raised-button style="padding: 0px; margin-top: 0px; margin-bottom: 4px;">
+        TIMEOUT
+      </button>
+    </div>
+    <div [hidden]="isDisplayToolbar" class="col-6">
+      <button mat-raised-button style="padding: 0px; margin-top: 0px; margin-bottom: 4px;">
+        END OF QUARTER
+      </button>
+    </div>
   </div>
 
-
-    <!-- <ng-template #content let-modal style="position: absolute; transform: translate(-50%, -50%);">
-      <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Pass Play</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        
-      </div>
-    </ng-template>
-    <ng-template #contentEdit let-modal>
-      <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Pass Play</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="passDelete()">Delete</button>
-        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Cancel click')">Cancel</button>
-      </div>
-    </ng-template> -->
-
-    <div [hidden]="isDisplayBase" class="row flex-grow-1 overflow-hidden">
+  <div [hidden]="isDisplayBase" class="row flex-grow-1 overflow-hidden">
     <div id=removeScrollBar class="col mh-100 overflow-auto py-2" style="overflow-y: scroll !important;">
       <div *ngFor="let stat of webService.stat_list">
         <div class="card text-white mb-3.5" [ngStyle]="{'background-color':this.getColor(stat.OffenseTeam)}"
-          style="width: 20rem; margin: auto; outline-style: solid; text-align: center;">
+          style="width: 100%; margin: auto; outline-style: solid; text-align: center;">
           <div class="card-body" style="cursor: pointer;" (click)="toggleDisplayEdit('editPass', stat)">
             <div class="row">
               <div class="col-3">
@@ -103,30 +86,23 @@
 
   <div [hidden]=isDisplayBase class="row flex-shrink-0"
     style="background-color: black !important; border-top: white; padding-bottom: 25px; border-top-style: solid;">
-    <div class="cont" style="border-top: 3px; border-color: white;">
+    <div class="cont" style="border-top: 3px; border-color: white; width: 100%;">
       <div class="row">
-        <div class="col" style="display: flex; justify-content: center;">
-          <button (click) ="toggleDisplay('run')" mat-raised-button>
-            Run
+        <div class="col-6" style="display: flex; justify-content: center;">
+          <button (click)="toggleDisplay('run')" mat-raised-button>
+            RUN
           </button>
         </div>
-        <div class="col" style="display: flex; justify-content: center;">
-          <button mat-raised-button (click) = "toggleDisplay('pass')">
-            Pass
+        <div class="col-6" style="display: flex; justify-content: center;">
+          <button mat-raised-button (click)="toggleDisplay('pass')">
+            PASS
           </button>
         </div>
       </div>
       <div class="row">
-        <div class="col" style="display: flex; justify-content: center;">
+        <div class="col-12" style="display: flex; justify-content: center;">
           <button mat-raised-button>
-            Special Teams
-          </button>
-        </div>
-        </div>
-        <div class="row">
-        <div class="col" style="display: flex; justify-content: center;">
-          <button mat-raised-button>
-            Penalties
+            PENALTIES
           </button>
         </div>
       </div>
@@ -135,56 +111,447 @@
 
   <div [hidden]="isDisplayPass" class="row flex-grow-1 overflow-hidden">
     <div id=removeScrollBar class="col mh-100 overflow-auto py-2" style="overflow-y: scroll !important;">
-        <form #addPass="ngForm" (ngSubmit)="onSubmit(addPass.value)">
 
-            <div class="form-group">
-              <label for="Passer">Passer</label>
-              <div class="input-group">
-                <select name="Passer" class="form-control" ngModel>
-                  <option value="10-Example">10-Example</option>
-                  <option value="7-David">7-David</option>
-                </select>
+      <form #addPassForm="ngForm" (ngSubmit)="onPassSubmit(addPassForm)" appIdentityRevealed>
+        <div class="cross-validation"
+          [class.cross-validation-error]="addPassForm.errors?.['identityRevealed'] && (addPassForm.touched || addPassForm.dirty)">
+
+          <div class="form-group row" style="padding-bottom: 2%;">
+            <div class="col-6" style="align-self: center; text-align: left; color: white; font-size: 1rem;">
+              <label for="passer">Passer:</label>
+            </div>
+            <div class="col-6">
+              <select name="passer" id="passer" class="form-control" [(ngModel)]="stat.passer" #passer=ngModel>
+                <option value="10-Example">10-Example</option>
+                <option value="7-David">7-David</option>
+              </select>
+            </div>
+          </div>
+          <hr class="solid">
+
+          <div class="form-group row" style="padding-bottom: 2%;">
+            <div class="col-6" style="align-self: center; text-align: left; color: white; font-size: 1rem;">
+              <label for="reciever">Intended Reciever:</label>
+            </div>
+            <div class="col-6">
+              <select name="reciever" id="reciever" class="form-control" [(ngModel)]="stat.reciever" #reciever=ngModel>
+                <option value="88-Receiver">88-Receiver</option>
+                <option value="13-Pringle">13-Pringle</option>
+              </select>
+            </div>
+          </div>
+          <hr class="solid">
+
+          <div class="form-group row" style="padding-bottom: 2%;">
+
+            <div class="col-2" style="align-self: center; text-align: right; color: white; font-size: 1rem;">
+              <label for="startYards">Start:</label>
+            </div>
+            <div class="col-2">
+              <input type="number" min="-99" max="99" name="startYards" id="startYards" class="form-control"
+                [(ngModel)]="stat.startYards" #startYards=ngModel>
+            </div>
+
+            <div class="col-2" style="align-self: center; text-align: right; color: white; font-size: 1rem;">
+              <label for="endYards">End:</label>
+            </div>
+            <div class="col-2">
+              <input type="number" min="-99" max="99" name="endYards" id="endYards" class="form-control"
+                [(ngModel)]="stat.endYards" #endYards=ngModel>
+            </div>
+
+            <div class="col-2" style="align-self: center; text-align: right; color: white; font-size: 1rem;">
+              <label for="gainYards">Gain:</label>
+            </div>
+            <div class="col-2">
+              <input type="number" min="-99" max="99" name="gainYards" id="gainYards" class="form-control"
+                [(ngModel)]="stat.gainYards" #gainYards=ngModel>
+            </div>
+
+          </div>
+          <div
+            *ngIf="(startYards.invalid && (startYards.dirty || startYards.touched)) || (endYards.invalid && (endYards.dirty || endYards.touched)) || (gainYards.invalid && (gainYards.dirty || gainYards.touched)) "
+            class="alert">
+
+            <div *ngIf="startYards.errors?.['max'] || endYards.errors?.['max'] || gainYards.errors?.['max']">
+              Yards must be less than 99.
+            </div>
+
+            <div *ngIf="startYards.errors?.['min'] || endYards.errors?.['min'] || gainYards.errors?.['min']">
+              Yards must be greater than -99.
+            </div>
+
+          </div>
+
+          <div class="form-group">
+            <hr class="solid">
+            <div class="row flex">
+              <div class="col-4" style="align-self: center; text-align: left;">
+                <span style="color: white; font-size: 1rem;">Completed:</span>
+              </div>
+              <div class="col-8">
+                <div class="input-group" style="justify-content: right;">
+                  <mat-slide-toggle [checked]="stat.isComplete" color="primary" (click)="checkExclusive('complete')"
+                    style="padding: 0px;" [(ngModel)]="stat.isComplete" name="isComplete" id="isComplete">
+                  </mat-slide-toggle>
+                </div>
               </div>
             </div>
-  
-            <div class="form-group">
-              <label for="Receiver">Intended Reciever</label>
-              <div class="input-group">
-                <select name="Receiver" class="form-control" ngModel>
-                  <option value="88-Receiver">88-Receiver</option>
-                  <option value="13-Pringle">13-Pringle</option>
-                </select>
+          </div>
+
+          <div class="form-group">
+            <hr class="solid">
+            <div class="row flex">
+              <div class="col-4" style="align-self: center; text-align: left;">
+                <span style="color: white; font-size: 1rem;">Incomplete:</span>
+              </div>
+              <div class="col-8">
+                <div class="input-group" style="justify-content: right;">
+                  <mat-slide-toggle color="primary" [checked]="stat.isIncomplete" (click)="checkExclusive('incomplete')"
+                    style="padding: 0px;" [(ngModel)]="stat.isIncomplete" name="isIncomplete" id="isIncomplete">
+                  </mat-slide-toggle>
+                </div>
               </div>
             </div>
-  
-            <div class="form-group">
-              <label for="Complete">Pass Status</label>
-              <div class="input-group">
-                <mat-button-toggle-group name="passStatus" aria-label="Font Style" ngModel>
-                  <mat-button-toggle name="IsComplete" value="IsComplete">Comp</mat-button-toggle>
-                  <mat-button-toggle name="IsIncomplete" value="IsIncomplete">Incomp</mat-button-toggle>
-                  <mat-button-toggle name="IsIntercepted" value="IsIntercepted">Int</mat-button-toggle>
-                  <mat-button-toggle name="IsSack" value="IsSack">Sack</mat-button-toggle>
-                </mat-button-toggle-group>
+          </div>
+
+          <div class="form-group">
+            <hr class="solid">
+            <div class="row flex">
+              <div class="col-4" style="align-self: center; text-align: left;">
+                <span style="color: white; font-size: 1rem;">Interception:</span>
+              </div>
+              <div class="col-8">
+                <div class="input-group" style="justify-content: right;">
+                  <mat-slide-toggle color="primary" [checked]="stat.isIntercepted" (click)="checkExclusive('int')"
+                    style="padding: 0px;" [(ngModel)]="stat.isIntercepted" name="isIntercepted"></mat-slide-toggle>
+                </div>
               </div>
             </div>
-  
-            <div class="form-group">
-              <label for="Yards">Yards Gained</label>
-              <div class="input-group">
-                <input type="number" name="Yards" class="form-control" ngModel>
+          </div>
+
+          <div class="form-group">
+            <hr class="solid">
+            <div class="row flex">
+              <div class="col-4" style="align-self: center; text-align: left;">
+                <span style="color: white; font-size: 1rem;">Sacked:</span>
+              </div>
+              <div class="col-8">
+                <div class="input-group" style="justify-content: right;">
+                  <mat-slide-toggle color="primary" [checked]="stat.isSack" (click)="checkExclusive('sack')"
+                    style="padding: 0px;" [(ngModel)]="stat.isSack" name="isSack"></mat-slide-toggle>
+                </div>
               </div>
             </div>
-            <div class="text-center">
-              <button (click) = "toggleDisplay('pass')" class="btn btn-outline-dark" style="margin-top: 10px;">Submit</button>
+          </div>
+
+          <div class="form-group">
+            <hr class="solid">
+            <div class="row flex">
+              <div class="col-4" style="align-self: center; text-align: left;">
+                <span style="color: white; font-size: 1rem;">Touchdown:</span>
+              </div>
+              <div class="col-8">
+                <div class="input-group" style="justify-content: right;">
+                  <mat-slide-toggle color="primary"  [checked]="stat.isTouchdown" (click)="checkExclusive('touchdown')" style="padding: 0px;" [(ngModel)]="stat.isTouchdown" name="isTouchdown">
+                  </mat-slide-toggle>
+                </div>
+              </div>
             </div>
-          </form>
-          <button (click) = "toggleDisplay('pass')">back </button>
+          </div>
+
+          <div class="form-group">
+            <hr class="solid">
+            <div class="row flex">
+              <div class="col-4" style="align-self: center; text-align: left;">
+                <span style="color: white; font-size: 1rem;">Safety:</span>
+              </div>
+              <div class="col-8">
+                <div class="input-group" style="justify-content: right;">
+                  <mat-slide-toggle color="primary" [checked]="stat.isSafety" (click)="checkExclusive('safety')" style="padding: 0px;" [(ngModel)]="stat.isSafety" name="isSafety">
+                  </mat-slide-toggle>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <hr class="solid">
+            <div class="row flex">
+              <div class="col-4" style="align-self: center; text-align: left;">
+                <span style="color: white; font-size: 1rem;">Penalty:</span>
+              </div>
+              <div class="col-8">
+                <div class="input-group" style="justify-content: right;">
+                  <mat-slide-toggle color="primary"  [checked]="stat.isPenalty" (click)="checkExclusive('penalty')" style="padding: 0px;" [(ngModel)]="stat.isPenalty" name="isPenalty">
+                  </mat-slide-toggle>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row flex" id="footer">
+            <hr class="solid">
+            <div class="col-6">
+              <button mat-raised-button type="reset" style=" width: 100%; padding: 0px;"
+                (click)="toggleDisplay('pass')">BACK</button>
+            </div>
+            <div class="col-6">
+              <button mat-raised-button type="submit" style=" width: 100%; padding: 0px;">SUBMIT</button>
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
-
   </div>
 
-  <div [hidden]="isDisplayEditPass" class="row flex-grow-1 overflow-hidden">
+  <div [hidden]="isDisplayTackle" class="row flex-grow-1 overflow-hidden">
+    <div id=removeScrollBar class="col mh-100 overflow-auto py-2" style="overflow-y: scroll !important;">
+
+      <form #addTackleForm="ngForm" (ngSubmit)="onTackleSubmit(addTackleForm)" appIdentityRevealed>
+        <div class="cross-validation"
+          [class.cross-validation-error]="addTackleForm.errors?.['identityRevealed'] && (addTackleForm.touched || addTackleForm.dirty)">
+
+          <div [hidden]="!stat.isIntercepted" class="form-group row" style="padding-bottom: 2%;">
+            <div class="col-6" style="align-self: center; text-align: left; color: white; font-size: 1rem;">
+              <label for="intercepter">intercepter:</label>
+            </div>
+            <div class="col-6">
+              <select name="intercepter" id="intercepter" class="form-control" [(ngModel)]="stat.intercepter" #intercepter=ngModel>
+                <option value="10-Example">10-Example</option>
+                <option value="7-David">7-David</option>
+              </select>
+            </div>
+          </div>
+          <hr [hidden]="!stat.isIntercepted" class="solid">
+
+          <div class="form-group row" style="padding-bottom: 2%;">
+            <div class="col-6" style="align-self: center; text-align: left; color: white; font-size: 1rem;">
+              <label for="tackler">Tackler:</label>
+            </div>
+            <div class="col-6">
+              <select name="tackler" id="tackler" class="form-control" [(ngModel)]="stat.tackler" #tackler=ngModel>
+                <option value="10-Example">10-Example</option>
+                <option value="7-David">7-David</option>
+              </select>
+            </div>
+          </div>
+          <hr class="solid">
+          <div class="row flex" id="footer">
+            <hr class="solid">
+            <div class="col-6">
+              <button mat-raised-button type="reset" style=" width: 100%; padding: 0px;"
+                (click)="toggleDisplay('tacklePass')">BACK</button>
+            </div>
+            <div class="col-6">
+              <button mat-raised-button type="submit" style=" width: 100%; padding: 0px;">SUBMIT</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- <form #addPass="ngForm" (ngSubmit)="onSubmit(addPass.value)">
+
+            <div class="form-group">
+              <div class="row flex">
+                <div class="col-4" style="align-self: center; text-align: left;">                
+                  <span style="color: white; font-size: 1rem;">Passer:</span>
+                </div>
+                <div class="col-8">
+                  <div class="input-group">
+                    <select name="Passer" class="form-control" ngModel>
+                      <option value="10-Example">10-Example</option>
+                      <option value="7-David">7-David</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <hr class="solid">
+              <div class="row flex">
+                <div class="col-4" style="align-self: center; text-align: left;">                
+                  <span style="color: white; font-size: 1rem;">Intended Reciever:</span>
+                </div>
+                <div class="col-8">
+                  <div class="input-group">
+                    <select name="Receiver" class="form-control" ngModel>
+                      <option value="88-Receiver">88-Receiver</option>
+                      <option value="13-Pringle">13-Pringle</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- <div class="form-group">
+              <hr class="solid">
+              <div class="row flex">
+                <div class="col-2" style="align-self: center; text-align: center;">                
+                  <span style="color: white; font-size: 1rem;">Pass Status:</span>
+                </div>
+                <div class="col-10">
+                  <div class="input-group">
+                    <mat-button-toggle-group name="passStatus" aria-label="Font Style" ngModel>
+                      <mat-button-toggle name="IsComplete" value="IsComplete">Comp</mat-button-toggle>
+                      <mat-button-toggle name="IsIncomplete" value="IsIncomplete">Incomp</mat-button-toggle>
+                      <mat-button-toggle name="IsIntercepted" value="IsIntercepted">Int</mat-button-toggle>
+                      <mat-button-toggle name="IsSack" value="IsSack">Sack</mat-button-toggle>
+                    </mat-button-toggle-group>
+                  </div>
+                </div>
+              </div>
+            </div>
+   -->
+  <!-- <div class="form-group">
+              <hr class="solid">
+              <div class="row flex">
+                <div class="col-4"> 
+                  <div class="input-group">               
+                  <span style="color: white; font-size: 1rem; align-self: center; text-align: left;">Start:</span>
+                    <input type="number" id="startYards" required minlength="4" name="startYards" class="form-control" style="background-color: transparent; margin-left: 4px; border-style: none; border-bottom-style: solid; border-radius: 0px; text-align: center; color: white; " #startYards=ngModel>
+                    <div *ngIf="startYards.invalid && (startYards.dirty || startYards.touched)"
+                    class="alert">
+      
+                  <div *ngIf="startYards.errors?.['maxlength']">
+                    Must be less than 100
+                  </div>
+      
+                </div>
+                  </div>
+              </div>
+                <div class="col-4"> 
+                  <div class="input-group">               
+                  <span style="color: white; font-size: 1rem; align-self: center; text-align: left;">End:</span>
+                    <input type="number" max="100" min="-100" name="endYards" class="form-control" style="background-color: transparent; margin-left: 4px; border-style: none; border-bottom-style: solid; border-radius: 0px; text-align: center; color: white;"  ngModel>
+                  </div>
+              </div>
+                <div class="col-4"> 
+                  <div class="input-group">               
+                  <span style="color: white; font-size: 1rem; align-self: center; text-align: left;">Gain:</span>
+                    <input type="number" max="100" min="-100" name="gainYards" class="form-control" style="background-color: transparent; margin-left: 4px; border-style: none; border-bottom-style: solid; border-radius: 0px; text-align: center; color: white;"  ngModel>
+                  </div>
+              </div>
+            </div>
+            </div>
+
+            <div class="form-group">
+              <hr class="solid">
+              <div class="row flex">
+                <div class="col-4" style="align-self: center; text-align: left;">                
+                  <span style="color: white; font-size: 1rem;">Completed:</span>
+                </div>
+                <div class="col-8">
+                  <div class="input-group" style="justify-content: right;">
+                    <mat-slide-toggle style="padding: 0px;" ngModel  name="IsComplete" ></mat-slide-toggle>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <hr class="solid">
+              <div class="row flex">
+                <div class="col-4" style="align-self: center; text-align: left;">                
+                  <span style="color: white; font-size: 1rem;">Incomplete:</span>
+                </div>
+                <div class="col-8">
+                  <div class="input-group" style="justify-content: right;">
+                    <mat-slide-toggle style="padding: 0px;" ngModel name="IsIncomplete"></mat-slide-toggle>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <hr class="solid">
+              <div class="row flex">
+                <div class="col-4" style="align-self: center; text-align: left;">                
+                  <span style="color: white; font-size: 1rem;">Interception:</span>
+                </div>
+                <div class="col-8">
+                  <div class="input-group" style="justify-content: right;">
+                    <mat-slide-toggle style="padding: 0px;" ngModel name="IsIntercepted"></mat-slide-toggle>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <hr class="solid">
+              <div class="row flex">
+                <div class="col-4" style="align-self: center; text-align: left;">                
+                  <span style="color: white; font-size: 1rem;">Sacked:</span>
+                </div>
+                <div class="col-8">
+                  <div class="input-group" style="justify-content: right;">
+                    <mat-slide-toggle style="padding: 0px;" ngModel name="IsSack"></mat-slide-toggle>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <hr class="solid">
+              <div class="row flex">
+                <div class="col-4" style="align-self: center; text-align: left;">                
+                  <span style="color: white; font-size: 1rem;">Safety:</span>
+                </div>
+                <div class="col-8">
+                  <div class="input-group" style="justify-content: right;">
+                    <mat-slide-toggle style="padding: 0px;" ngModel name="IsSafety"></mat-slide-toggle>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <hr class="solid">
+              <div class="row flex">
+                <div class="col-4" style="align-self: center; text-align: left;">                
+                  <span style="color: white; font-size: 1rem;">Penalty:</span>
+                </div>
+                <div class="col-8">
+                  <div class="input-group" style="justify-content: right;">
+                    <mat-slide-toggle style="padding: 0px;" ngModel name="IsPenalty"></mat-slide-toggle>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row flex" id="footer">
+              <hr class="solid">
+              <div class="col-6">
+                <button mat-raised-button type="button" style=" width: 100%; padding: 0px;" (click) = "toggleDisplay('pass')">BACK</button>
+              </div>
+              <div class="col-6">
+                <button mat-raised-button type="submit" (click) = "toggleDisplay('pass')" style=" width: 100%; padding: 0px;">SUBMIT</button>
+              </div>
+            </div>
+            
+          </form> -->
+  <!-- </div>
+
+  </div> -->
+
+  <!-- <div [hidden]="isDisplayEditPass" class="row flex-grow-1 overflow-hidden">
     <div id=removeScrollBar class="col mh-100 overflow-auto py-2" style="overflow-y: scroll !important;">
         <form #editPass="ngForm" (ngSubmit)="onEdit(editPass.value)">
 
@@ -228,15 +595,20 @@
                 <input type="number" name="Yards" class="form-control" value=currentYardsGained [(ngModel)]="currentYardsGained">
               </div>
             </div>
-            <div class="text-center">
-              <button (click) = "toggleDisplay('editPass')" class="btn btn-outline-dark" style="margin-top: 10px;">Submit</button>
+
+            <div class="row flex" id="footer">
+              <hr class="solid">
+              <div class="col-4">
+                <button mat-raised-button type="button" style=" width: 100%; padding: 0px;" (click) = "toggleDisplay('editPass')">BACK</button>
+              </div>
+              <div class="col-4">
+                <button mat-raised-button type="button" style=" width: 100%; padding: 0px;" (click)="passDelete()">DELETE</button>
+              </div>
+              <div class="col-4">
+                <button mat-raised-button type="submit" (click) = "toggleDisplay('editPass')" style=" width: 100%; padding: 0px;">SUBMIT</button>
+              </div>
             </div>
           </form>
-          <button type="button" class="btn btn-outline-dark" (click)="passDelete()">Delete</button>
-          <button (click) = "toggleDisplay('editPass')">back </button>
+          
     </div>
-
-  </div>
-
-  
-</div>
+  </div> -->

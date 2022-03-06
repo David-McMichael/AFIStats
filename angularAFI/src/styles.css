@@ -45,3 +45,30 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   border-radius: .25rem;
   margin-bottom: 20px !important;
 }
+
+.mat-slide-toggle-label{
+  padding: 0px !important;
+}
+
+.mat-slide-toggle-bar {
+  position: relative !important;
+  width: 45px !important;
+  height: 22px !important;
+  border-radius: 8px !important;
+}
+
+.mat-slide-toggle-thumb {
+  height: 30px !important;
+  width: 30px !important;
+  border-radius: 50% !important;
+}
+
+.mat-slide-toggle {
+  display: inline-block;
+  height: 40px ;
+  max-width: 100%;
+  line-height: 24px;
+  white-space: nowrap;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}

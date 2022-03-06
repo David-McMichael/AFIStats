@@ -8,6 +8,7 @@ import * as _ from 'lodash';
 @Injectable()
 export class WebService {
   stat_list: any;
+  last_stat: any;
   fav_list: any;
   team_stat_list: any;
   userDetails: any;
@@ -22,7 +23,7 @@ export class WebService {
       .subscribe((response: any) => {
         this.stat_list = response;
         this.stat_list = _.orderBy(this.stat_list, ['id'], ['desc']);
-        console.log(this.stat_list);
+        this.last_stat = this.stat_list[0];
         this.backup_stat_list = response;
       });
   }

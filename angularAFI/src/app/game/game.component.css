@@ -43,4 +43,55 @@
     top:20% !important;
  }  
 
+ #footer {
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+}
+
+hr.solid {
+    border-top: 2px solid white;
+    opacity: 1;
+  }
+
+hr {
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
+.alert div {
+    background-color: #fed3d3;
+    color: #820000;
+    padding: 1rem;
+  }
+
+  .alert {
+    position: relative;
+    padding: 5px 5px;
+    margin-bottom: 0px;
+    border: 0px solid transparent;
+    border-radius: .25rem;
+}
+
+
+
+/* CSS to change 'Primary' color */
+
+::ng-deep .mat-slide-toggle.mat-primary.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+    background-color: #022413;
+}
+
+::ng-deep .mat-slide-toggle.mat-primary.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+    background-color: rgb(2, 36, 19,.54);
+}
+
+/* CSS to change 'Warn' color */
+
+::ng-deep .mat-slide-toggle.mat-warn.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+    background-color: red;
+}
+
+::ng-deep .mat-slide-toggle.mat-warn.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+    background-color: #ffe066;
+}
 
